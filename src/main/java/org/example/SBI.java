@@ -29,7 +29,7 @@ public class SBI implements RBI{
         else {
             if (times >= this.time_limit){
                 System.out.println("1% interest will be charged");
-                balance=balance-(float)(0.01*balance);
+                balance=balance-money-(float)(0.01*money);
             }
             else{
                 balance=(balance-money);

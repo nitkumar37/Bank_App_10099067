@@ -11,7 +11,7 @@ public class RBI_Test {
         else {
             if (times >= time_limit){
                 System.out.println("1% interest will be charged");
-                balance=balance-(float)(0.01*balance);
+                balance=balance-money-(float)(0.01*money);
             }
             else{
                 balance=(balance-money);
@@ -33,8 +33,11 @@ public class RBI_Test {
 
     }
 
-    public static void applyLoan(float roi, float amount, int years,float balance,float min_balance) {
-        if ((min_balance * 2) < balance) System.out.println("Not eligible for loan");
+    public static String applyLoan(float roi, float amount, int years,float balance,float min_balance) {
+        if ((min_balance * 2) > balance) {
+            System.out.println("Not eligible for loan");
+            return "Not eligible";
+        }
         else {
             float tempmoney = amount;
             int t = 1;
@@ -44,11 +47,16 @@ public class RBI_Test {
                 t = t + 1;
             }
             System.out.println("Total Interest paid - " + (tempmoney - amount));
+            return (tempmoney-amount) +"";
         }
     }
 
-    public static void applyCreditCard(float balance,float min_balance) {
-        if ((min_balance * 2) < balance) System.out.println("Eligible for Credit Card");
+    public static String applyCreditCard(float balance,float min_balance) {
+        if ((min_balance * 2) < balance){
+            System.out.println("Eligible for Credit Card");
+            return "eligible";
+        }
         else System.out.println("Not eligible for the Credit Card");
+        return "not eligible";
     }
 }

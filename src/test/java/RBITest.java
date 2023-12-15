@@ -37,14 +37,27 @@ public class RBITest {
 
     @Test
     public void depositeMoney(){
-        float expectedBalance = 3000F, returnedBalance = RBI_Test.depositMoney(1000F,2000F);
-        assertEquals(expectedBalance,returnedBalance);
+        Assertions.assertEquals(3000F,RBI_Test.depositMoney(1000F,2000F));
+        Assertions.assertEquals(8000F,RBI_Test.depositMoney(3000F,5000F));
     }
 
     @Test
     public void WithdrawMoney(){
-        float expectedBalance= 2000F,returnedBalance= RBI_Test.withdrawMoney(1000F,3000F,0,1000F,3);
-        assertEquals(expectedBalance,returnedBalance);
+        Assertions.assertEquals(2000F,RBI_Test.withdrawMoney(1000F,3000F,0,1000F,3));
+        Assertions.assertEquals(500F,RBI_Test.withdrawMoney(1000F,500F,1,1000F,3));
+        Assertions.assertEquals(4990F,RBI_Test.withdrawMoney(1000F,6000F,3,1000F,3));
+    }
+
+    @Test
+    public void applyCreditTest(){
+        Assertions.assertEquals("eligible",RBI_Test.applyCreditCard(1000F,400F));
+        Assertions.assertEquals("not eligible",RBI_Test.applyCreditCard(1000F,1000F));
+    }
+
+    @Test
+    public void appyLoanTest(){
+        Assertions.assertEquals("Not eligible",RBI_Test.applyLoan(5F,10000F,3,1000F,10000F));
+        Assertions.assertEquals("1576.25",RBI_Test.applyLoan(5F,10000F,3,1000F,400F));
     }
 
 }
