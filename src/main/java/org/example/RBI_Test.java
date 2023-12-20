@@ -1,14 +1,12 @@
 package org.example;
 
 public class RBI_Test {
-    public static float depositMoney(float money,float balance) {
+    public float depositMoney(float money,float balance) {
         balance += money;
-        System.out.println("updated balance is "+balance);
         return balance;
     }
-    public static float withdrawMoney(float money,float balance,int times,float min_balance, int time_limit) {
-        if(balance-money < min_balance)System.out.println("Insufficient money");
-        else {
+    public float withdrawMoney(float money,float balance,int times,float min_balance, int time_limit) {
+        if(balance-money > min_balance){
             if (times >= time_limit){
                 System.out.println("1% interest will be charged");
                 balance=balance-money-(float)(0.01*money);
@@ -17,25 +15,22 @@ public class RBI_Test {
                 balance=(balance-money);
             }
         }
-        System.out.println("updated balance is "+balance);
         return balance;
     }
 
-    public static void openFD(float amount, int years,float ROI) {
+    public float openFD(float amount, int years,float ROI) {
         float tempmoney=amount;
         int t=1;
         while(t<=years){
             tempmoney+=tempmoney*(ROI/100);
-            System.out.println("Year "+t+" - "+tempmoney);
             t=t+1;
         }
-        System.out.println("Total profit - "+(tempmoney-amount));
+        return (tempmoney-amount);
 
     }
 
-    public static String applyLoan(float roi, float amount, int years,float balance,float min_balance) {
+    public String applyLoan(float roi, float amount, int years,float balance,float min_balance) {
         if ((min_balance * 2) > balance) {
-            System.out.println("Not eligible for loan");
             return "Not eligible";
         }
         else {
@@ -43,20 +38,16 @@ public class RBI_Test {
             int t = 1;
             while (t <= years) {
                 tempmoney += tempmoney * (roi / 100);
-                System.out.println("Year " + t + " - " + tempmoney);
                 t = t + 1;
             }
-            System.out.println("Total Interest paid - " + (tempmoney - amount));
             return (tempmoney-amount) +"";
         }
     }
 
-    public static String applyCreditCard(float balance,float min_balance) {
+    public String applyCreditCard(float balance,float min_balance) {
         if ((min_balance * 2) < balance){
-            System.out.println("Eligible for Credit Card");
             return "eligible";
         }
-        else System.out.println("Not eligible for the Credit Card");
-        return "not eligible";
+        else return "not eligible";
     }
 }

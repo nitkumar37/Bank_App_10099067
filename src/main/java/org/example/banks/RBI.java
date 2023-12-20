@@ -1,4 +1,4 @@
-package org.example;
+package org.example.banks;
 
 public interface RBI {
 
